@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - ShopEase</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="shortcut icon" href="./logo.png">
+    
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">ShopEase</div>
+            <ul>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./product.html">Products</a></li>
+                <li><a href="./about.html">About Us</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+                <li><a href="#" class="active">🛒 Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="cart">
+        <h1>Your Shopping Cart</h1>
+
+        <!-- Cart Items -->
+        <div class="cart-container">
+
+            <!-- Item 1 -->
+            <div class="cart-item">
+                <img src="./image.jpg" alt="Smartphone">
+                <div class="item-details">
+                    <h2>Smartphone</h2>
+                    <p>$499.99</p>
+                    <label for="quantity1">Quantity:</label>
+                    <input id="quantity1" type="number" value="1" min="1">
+                </div>
+                <button class="remove-btn">Remove</button>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="cart-item">
+                <img src="./image2.jpg" alt="Wireless Headphones">
+                <div class="item-details">
+                    <h2>Wireless Headphones</h2>
+                    <p>$149.99</p>
+                    <label for="quantity2">Quantity:</label>
+                    <input id="quantity2" type="number" value="1" min="1">
+                </div>
+                <button class="remove-btn">Remove</button>
+            </div>
+
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+            <h2>Order Summary</h2>
+            <p>Subtotal: <span id="subtotal">$649.98</span></p>
+            <p>Shipping: <span>$10.00</span></p>
+            <p><strong>Total: <span id="total">$659.98</span></strong></p>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ShopEase. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
