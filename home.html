@@ -7,6 +7,46 @@
     <title>AI_Giftos - Your Online Store</title>
     <link rel="stylesheet" href="./index.css">
     <link rel="shortcut icon" href="./logo.png">
+    <style>
+        body {
+         font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    color: #333;
+        }
+        #output {
+          margin-top: 20px;
+          font-size: 1.2em;
+          color: #333;
+        }
+        #start{
+          width: 150px; /* Adjust width to make it small */
+  height: 30px; /* Set height for the search bar */
+  padding: 5px; /* Add some padding for inner spacing */
+  font-size: 13px; /* Adjust font size */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Rounded corners */
+  outline: none;
+        }
+        input[type="text"] {
+  width: 150px; /* Adjust width to make it small */
+  height: 30px; /* Set height for the search bar */
+  padding: 5px; /* Add some padding for inner spacing */
+  font-size: 14px; /* Adjust font size */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 5px; /* Rounded corners */
+  outline: none; /* Remove outline when focused */
+}
+
+input[type="text"]:focus {
+  border-color: #0078D7; /* Highlight border on focus */
+  box-shadow: 0 0 5px rgba(0, 120, 215, 0.5); /* Add subtle glow effect */
+}
+
+      </style>
+    
 </head>
 
 <body>
@@ -14,7 +54,7 @@
     <!-- Header Section -->
     <header>
         <nav>
-            <div class="logo">AI Giftos: Smart Gifting,Made Easy!
+            <div class="logo" >AI Giftos: Smart Gifting,Made Easy!
             </div>
             <ul>
                 <li><a href="#">Home</a></li>
@@ -27,9 +67,23 @@
         </nav>
     </header>
 
+
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Welcome to AI Giftos: Smart Gifting,Made Easy!
+      
+        <h2>Find the Perfect Gift</h2>
+        <input type="text" id="giftSearch" placeholder="Search for a gift...">
+        <button onclick="searchGift()">Search</button>
+        <ul id="recommendations"></ul>
+        
+  
+        <!-- search -->
+        
+        <button id="start">🎙️ Start Voice Search</button>
+        <p id="output">Tell me With type of gift to you want...</p>
+      
+        <!-- close search -->
+        <h1 >Welcome to AI Giftos: Smart Gifting,Made Easy!
         </h1>
         <p>Your One-Stop Online Shopping Destination</p>
         <a href="#products" class="btn">Shop Now</a>
@@ -74,11 +128,77 @@
 
         </div>
     </section>
-
+    
+    
     <!-- Footer Section -->
     <footer>
         <p>&copy; 2025 AI Giftos: Smart Gifting,Made Easy!. All rights reserved.</p>
     </footer>
+    <script>
+        const startButton = document.getElementById('start');
+        const output = document.getElementById('output');
+    
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+    
+        recognition.lang = 'en-US'; // Set the language
+        recognition.interimResults = false;
+    
+        startButton.addEventListener('click', () => {
+          recognition.start();
+          output.textContent = 'Listening...';
+        });
+        recognition.addEventListener('result', (event) => {
+      const transcript = event.results[0][0].transcript;
+      output.textContent = `You said: ${transcript}`;
+      console.log(`Transcript: ${transcript}`);
+      // Implement search functionality here if needed
+      
+    });
+
+    recognition.addEventListener('end', () => {
+      output.textContent += ' (Recognition ended)';
+    });
+    // JavaScript function to handle gift search
+function searchGift() {
+  // Get the input value from the search box
+  const searchTerm = document.getElementById("giftSearch").value.toLowerCase();
+
+  // Predefined gift recommendations
+  const gifts = [
+    "Flowers",
+    "Chocolate",
+    "Books",
+    "Toys",
+    "Handmade Crafts",
+    "Jewelry",
+    "Personalized Mugs",
+    "Perfume"
+  ];
+
+  // Filter gifts based on the search term
+  const filteredGifts = gifts.filter(gift => gift.toLowerCase().includes(searchTerm));
+
+  // Get the recommendations list element
+  const recommendationsList = document.getElementById("recommendations");
+
+  // Clear previous results
+  recommendationsList.innerHTML = "";
+
+  // Display the filtered recommendations
+  if (filteredGifts.length > 0) {
+    filteredGifts.forEach(gift => {
+      const listItem = document.createElement("li");
+      listItem.textContent = gift;
+      recommendationsList.appendChild(listItem);
+    });
+  } else {
+    const listItem = document.createElement("li");
+    listItem.textContent = "No matching gifts found.";
+    recommendationsList.appendChild(listItem);
+  }
+}
+  </script>
 
 </body>
 
